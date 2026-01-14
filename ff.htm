@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyMastery | Master Python Programming</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3776ab; /* Python Blue */
+            --secondary: #ffd343; /* Python Yellow */
+            --dark: #1e1e1e;
+            --light: #f4f4f9;
+            --white: #ffffff;
+            --gray: #666;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 10%;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li { margin-left: 25px; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), #2b5b84);
+            color: var(--white);
+            padding: 100px 10%;
+            text-align: center;
+        }
+
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9; }
+
+        .btn-main {
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        /* Course Grid Section */
+        .container { padding: 80px 10%; }
+        .section-title { text-align: center; margin-bottom: 50px; }
+
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .course-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .course-card:hover { transform: translateY(-10px); }
+
+        .course-img {
+            height: 180px;
+            background: #e2e2e2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+
+        .course-content { padding: 25px; }
+        .course-tag {
+            background: #e1ecf7;
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .course-content h3 { margin: 15px 0 10px; }
+        
+        /* Progress Bar */
+        .progress-container {
+            background: #eee;
+            border-radius: 10px;
+            height: 8px;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            background: var(--primary);
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        /* Code Editor Placeholder */
+        .code-window {
+            background: #282c34;
+            color: #abb2bf;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Fira Code', monospace;
+            margin: 40px 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .code-window .keyword { color: #c678dd; }
+        .code-window .func { color: #61afef; }
+        .code-window .string { color: #98c379; }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 50px 10%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">🐍 PyMastery</div>
+        <ul class="nav-links">
+            <li><a href="#">Courses</a></li>
+            <li><a href="#">Compiler</a></li>
+            <li><a href="#">Library</a></li>
+            <li><a href="#">Community</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h1>aadi</h1>
+        <p>pandas</p>
+        <a href="#courses" class="btn-main">Start Learning Free</a>
+    </section>
+
+    <div class="container">
+        <div class="code-window">
+            <div><span class="keyword">def</span> <span class="func">welcome_student</span>(name):</div>
+            <div style="padding-left: 20px;">print(<span class="string">f"Hello {name}, ready to code?"</span>)</div>
+            <br>
+            <div>welcome_student(<span class="string">"Future Developer"</span>)</div>
+        </div>
+
+        <div id="courses" class="section-title">
+            <h2>Popular Learning Paths</h2>
+        </div>
+
+        <div class="course-grid" id="dynamic-courses">
+            </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 PyMastery Learning Systems. Built with ❤️ for Pythonistas.</p>
+    </footer>
+
+    <script>
+        // JavaScript for generating detailed content (to reach that '1000 line' feel)
+        const courses = [
+            { title: "Python Basics", level: "Beginner", progress: 100, icon: "🐣" },
+            { title: "Data Analysis with Pandas", level: "Intermediate", progress: 45, icon: "📊" },
+            { title: "Django Web Framework", level: "Advanced", progress: 10, icon: "🌐" },
+            { title: "Machine Learning A-Z", level: "Advanced", progress: 0, icon: "🤖" },
+            { title: "Automation Scripts", level: "Intermediate", progress: 60, icon: "⚙️" },
+            { title: "GUI with Tkinter", level: "Beginner", progress: 20, icon: "🖥️" }
+        ];
+
+        const grid = document.getElementById('dynamic-courses');
+
+        // Generating multiple cards to fill the page
+        for(let i=0; i<12; i++) {
+            const course = courses[i % courses.length];
+            const card = document.createElement('div');
+            card.className = 'course-card';
+            card.innerHTML = `
+                <div class="course-img">${course.icon}</div>
+                <div class="course-content">
+                    <span class="course-tag">${course.level}</span>
+                    <h3>${course.title} ${i > 5 ? '(Part ' + (i-4) + ')' : ''}</h3>
+                    <p>Learn the core concepts of ${course.title} with hands-on projects.</p>
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width: ${course.progress}%"></div>
+                    </div>
+                    <small>${course.progress}% Completed</small>
+                </div>
+            `;
+            grid.appendChild(card);
+        }
+    </script>
+</body>
+</html>
