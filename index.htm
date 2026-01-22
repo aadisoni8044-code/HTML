@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR CODE</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    
+    <style>
+        :root {
+            --primary: #00f2ff;
+            --bg: #0a0b10;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: white;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* Responsive Container */
+        .container {
+            padding: 20px;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .header-box {
+            background: #161b22;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid var(--primary);
+            margin-top: 50px;
+        }
+
+        /* QR Code Styling */
+        #qrcode {
+            background: white;
+            padding: 15px;
+            display: inline-block;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        input {
+            width: 80%;
+            padding: 12px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .btn {
+            background: var(--primary);
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Mobile specific style */
+        @media (max-width: 600px) {
+            h1 { font-size: 24px; }
+            .header-box { margin-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-box">
+            <h1>QR code </h1>
+            <p>Type your website link below to generate a QR Code</p>
+            
+            <input type="text" id="url-input" placeholder="https://yourwebsite.com" value="https://Github.com/aadisoni8044-code">
+            <br>
+            <button class="btn" onclick="generateQR()">Generate QR Code</button>
+            
+            <div id="qrcode"></div>
+        </div>
+
+        <div style="margin-top: 40px; color: #a1a1aa;">
+            <h3>aadi soni</h3>
+            <p>Scan this with your smartphone camera to instantly access your circuit designs and projects.</p>
+        </div>
+    </div>
+
+    <script>
+        // Function to Generate QR Code
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "https://Github.com/aadisoni8044-code",
+            width: 180,
+            height: 180,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+
+        function generateQR() {
+            var url = document.getElementById("url-input").value;
+            if(url) {
+                qrcode.clear(); 
+                qrcode.makeCode(url);
+            } else {
+                alert("Please enter a URL");
+            }
+        }
+    </script>
+</body>
+</html>
