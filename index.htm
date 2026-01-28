@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR CODE </title>
+    <title> QR CODE</title>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -22,6 +22,7 @@
             margin: 0;
             text-align: center;
             padding-bottom: 50px;
+            transition: background 0.5px;
         }
 
         .container {
@@ -30,21 +31,43 @@
             margin: auto;
         }
 
-        .header-box, .info-box, .social-box, .tech-box {
+        /* --- LED CONTROL BOX --- */
+        .led-box {
+            background: var(--box-bg);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid var(--primary);
+            margin-top: 20px;
+        }
+
+        #bulb {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            margin: 10px auto;
+            border: 2px solid #555;
+            transition: 0.3s;
+        }
+
+        .switch-btn {
+            background: #222;
+            color: white;
+            border: 1px solid var(--primary);
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        /* --- BOX STYLING --- */
+        .header-box, .info-box, .tech-box, .social-box {
             background: var(--box-bg);
             padding: 25px;
             border-radius: 20px;
             border: 1px solid var(--primary);
             margin-top: 25px;
-            box-sizing: border-box;
-        }
-
-        #qrcode {
-            background: white;
-            padding: 15px;
-            display: inline-block;
-            border-radius: 10px;
-            margin-top: 20px;
         }
 
         input {
@@ -71,116 +94,99 @@
             width: 90%;
         }
 
-        /* Technology Icons Styling */
-        .tech-grid {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
+        #qrcode {
+            background: white;
+            padding: 10px;
+            display: inline-block;
+            border-radius: 5px;
             margin-top: 15px;
         }
 
-        .tech-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 12px;
-            color: #a1a1aa;
-        }
-
         .tech-img {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 5px;
-            object-fit: contain;
-        }
-
-        .social-grid img {
             width: 40px;
-            margin: 0 10px;
+            margin: 5px;
+            border: 1px solid #333;
+            padding: 5px;
+            border-radius: 8px;
         }
     </style>
 </head>
-<body>
+<body id="body">
 
     <div class="container">
         
+        <div class="led-box">
+            <h3 style="margin:0;">Virtual LED Switch</h3>
+            <div id="bulb"></div>
+            <button class="switch-btn" id="s-btn" onclick="toggleLED()">Switch ON</button>
+        </div>
+
         <div class="header-box">
-            <h1>QR Code</h1>
-            <input type="text" id="url-input" placeholder="Paste link here" value="https://Github.com/aadisoni8044-code">
-            <button class="btn" onclick="generateQR()">Generate QR Code</button>
-            <div id="qrcode"></div>
+            <h1>QR CODE</h1>
+            <input type="text" id="url-input" value="https://github.com/aadisoni8044-code">
+            <button class="btn" onclick="generateQR()">Generate QR  CODE</button>
+            <center><div id="qrcode"></div></center>
         </div>
 
         <div class="info-box">
-            <h2 style="color: var(--primary);">Gmail Login</h2>
-            <input type="text" id="user_name" placeholder="Full Name">
-            <input type="email" id="user_email" placeholder="Gmail Address">
-            <input type="text" id="user_address" placeholder="Address">
-            <button class="btn" id="login-btn" onclick="sendToEmail()">Login & Send Data</button>
+            <h2>Gmail Login</h2>
+            <input type="text" id="name" placeholder="Full Name">
+            <input type="email" id="email" placeholder="Gmail Address">
+            <input type="text" id="address" placeholder="Address">
+            <button class="btn" onclick="sendData()">Login & Notify</button>
         </div>
 
         <div class="tech-box">
-            <h3 style="margin-top: 0; color: var(--primary);">Technologies Used</h3>
             <div class="tech-grid">
-                <div class="tech-item">
-                    <img src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582748_1280.png" class="tech-img" alt="HTML">
-                    <span>HTML</span>
-                </div>
-                <div class="tech-item">
-                    <img src="https://cdn.pixabay.com/photo/2017/08/05/11/16/logo-2582747_1280.png" class="tech-img" alt="CSS">
-                    <span>CSS</span>
-                </div>
-                <div class="tech-item">
-                    <img src="https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400_1280.png" class="tech-img" alt="JS">
-                    <span>JavaScript</span>
-                </div>
-                <div class="tech-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" class="tech-img" alt="Python">
-                    <span>Python</span>
-                </div>
+
+                <a href="https://github.com/aadisoni8044-code"><img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" class="tech-img" style="filter: invert(1);"></a>
+                <a href="https://www.linkedin.com/in/aadi-soni-a9ba35394/"><img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" class="tech-img"></a>
+
             </div>
         </div>
 
-        <div class="social-box">
-            <h3>Quick Connect</h3>
-            <div class="social-grid">
-                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"></a>
-                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg"></a>
-                <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"></a>
-            </div>
-        </div>
-
-        <div style="margin-top: 30px; color: #a1a1aa;">
-            <h3>aadi soni</h3>
-        </div>
+        <h3 style="color:#a1a1aa; margin-top:20px;">aadi soni😎</h3>
     </div>
 
     <script>
-        // EmailJS Init
-        (function() { emailjs.init("YOUR_PUBLIC_KEY"); })();
-
-        function sendToEmail() {
-            const params = {
-                from_name: document.getElementById("user_name").value,
-                email_id: document.getElementById("user_email").value,
-                address: document.getElementById("user_address").value
-            };
-            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params)
-                .then(() => alert("Data Sent!"), () => alert("Error in sending."));
+        // --- LED LOGIC ---
+        let state = false;
+        function toggleLED() {
+            const bulb = document.getElementById('bulb');
+            const btn = document.getElementById('s-btn');
+            const body = document.getElementById('body');
+            
+            if(!state) {
+                bulb.style.background = "#00f2ff";
+                bulb.style.boxShadow = "0 0 25px #00f2ff";
+                btn.innerText = "Switch OFF";
+                btn.style.background = "#00f2ff";
+                btn.style.color = "black";
+                body.style.background = "#0f172a"; // Glow effect for page
+                state = true;
+            } else {
+                bulb.style.background = "#333";
+                bulb.style.boxShadow = "none";
+                btn.innerText = "Switch ON";
+                btn.style.background = "#222";
+                btn.style.color = "white";
+                body.style.background = "#0a0b10";
+                state = false;
+            }
         }
 
-        // QR Logic
+        // --- QR CODE ---
         var qrcode = new QRCode(document.getElementById("qrcode"), {
-            text: "https://Github.com/aadisoni8044-code",
-            width: 150,
-            height: 150
+            text: "https://github.com/aadisoni8044-code",
+            width: 140, height: 140
         });
 
         function generateQR() {
             var url = document.getElementById("url-input").value;
-            if(url) { qrcode.clear(); qrcode.makeCode(url); }
+            qrcode.clear(); qrcode.makeCode(url);
         }
+
+        function sendData() { alert("Sending Details to EmailJS..."); }
     </script>
 </body>
 </html>
